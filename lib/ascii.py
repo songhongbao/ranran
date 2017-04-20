@@ -80,8 +80,7 @@ def output():
         ['dolphin', 'white', 'Dolphin in the sea song.'],
         ['elephant', 'green', ''],
     ]
-    # [name, color, desc] = random.choice(arts)
-    [name, color, desc] = arts[7]
+    [name, color, desc] = random.choice(arts)
     print get_ascii(name, color)
     print desc + '\r\n'
     chars = '##############################################'
