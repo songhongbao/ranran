@@ -1,19 +1,27 @@
 # -*- coding:utf-8 -*-
 from lib import ascii
 
-ascii.output()
-from lib import log
-
-log.info('shy\r\n')
+# ascii.output()
 
 
 
 
-'''
-    from lib.rsocket import RSocket
 
-    fs = RSocket()
-    fs.client()
-    fs.send('111')
-'''
+from lib.rsocket import RSocket
+
+fs = RSocket()
+fs.listen()
+fs.send('111')
+exit(0)
+fs = RSocket()
+fs.listen()
+while True:
+    data = fs.receive()
+    if not data:
+        continue
+    print data
+fs.close()
+
+
+
 

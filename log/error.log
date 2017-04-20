@@ -1,0 +1,7 @@
+----------------------------
+Time: 2017-04-20 16:30:40
+ERROR: [Errno 10061] 
+Position:   File "E:\mypython\ranran\lib\rsocket.py", line 44, in send
+    log.error(e)
+----------------------------
+

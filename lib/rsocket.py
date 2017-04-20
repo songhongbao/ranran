@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import socket
 import config
-
+from lib import log
 
 class RSocket:
     _address = ('127.0.0.1', 7729)
@@ -19,22 +19,16 @@ class RSocket:
         self._socket.listen(5)
         self._socket.settimeout(5)
 
-    def client(self):
-        try:
-            self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self._socket.connect(self._address)
-        except Exception, e:
-            print e
-
     def receive(self):
         try:
             conn = self._socket.accept()[0]
             result = conn.recv(1024)
         except socket.timeout:
-            result = None
+            print 'time out'
+            return None
         except Exception, e:
-            print e
-            result = False
+            log.error(e)
+            return False
         finally:
             return result
 
@@ -42,13 +36,13 @@ class RSocket:
         if msg == '':
             return True
         try:
+            self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self._socket.connect(self._address)
             self._socket.send(msg)
-            result = True
+            return True
         except Exception, e:
-            print e
-            result = False
-        finally:
-            return result
+            log.error(e)
+            return False
 
     def close(self):
         self._socket.close()
