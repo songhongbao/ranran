@@ -6,6 +6,5 @@ while True:
     data = fs.receive()
     if not data:
         continue
-    fs.send('aa')
-    fs.close()
-    exit(0)
+    print data
+fs.close()

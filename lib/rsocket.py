@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import socket
-import sys
+import config
 
 
 class RSocket:
@@ -8,26 +8,28 @@ class RSocket:
     _socket = None
 
     def __init__(self):
-        sys.path.append("..")
-        # import config
-        # if config.port:
-        #   self._address = ('127.0.0.1', config.port)
+        if hasattr(config, 'port'):
+            self._address = ('127.0.0.1', config.port)
 
     def listen(self):
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # fix socket.error: Address already in use
         self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self._socket.bind(self._address)
-        self._socket.listen(10)
-        self._socket.settimeout(60)
+        self._socket.listen(5)
+        self._socket.settimeout(5)
 
     def client(self):
-        self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self._socket.connect(self._address)
+        try:
+            self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self._socket.connect(self._address)
+        except Exception, e:
+            print e
 
     def receive(self):
         try:
-            result = self._socket.recv(1024)
+            conn = self._socket.accept()[0]
+            result = conn.recv(1024)
         except socket.timeout:
             result = None
         except Exception, e:

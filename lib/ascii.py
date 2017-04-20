@@ -3,8 +3,6 @@ import random
 import platform
 import os
 import re
-import sys
-sys.path.append("..")
 import config
 
 
