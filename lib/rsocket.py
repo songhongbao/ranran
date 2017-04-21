@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 import socket
-import config
+from config import ranran
 from lib import log
+
 
 class RSocket:
     _address = ('127.0.0.1', 7729)
     _socket = None
 
     def __init__(self):
-        if hasattr(config, 'port'):
-            self._address = ('127.0.0.1', config.port)
+        if hasattr(ranran, 'port'):
+            self._address = ('127.0.0.1', ranran.port)
 
     def listen(self):
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

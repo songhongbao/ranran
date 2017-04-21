@@ -2,7 +2,8 @@
 import os
 import traceback
 import time
-import config
+import platform
+from config import ranran
 
 
 def log(file_path, content):
@@ -13,7 +14,7 @@ def log(file_path, content):
     return
 
 
-def error(msg):
+def error(msg, display=False):
     current_time = time.strftime('%Y-%m-%d %X', time.localtime(time.time() + time.timezone + 28800))
     trace_stack = traceback.format_stack()
     content = '----------------------------\n'
@@ -21,14 +22,28 @@ def error(msg):
     content += 'ERROR: ' + str(msg) + '\n'
     content += 'Position: ' + trace_stack[-2]
     content += '----------------------------\n\n'
-    log(config.error_log, content)
+    log(ranran.error_log, content)
+    if not display:
+        return
+    current_time = time.strftime('%X', time.localtime(time.time() + time.timezone + 28800))
+    if 'Windows' in platform.system():
+        print '[' + current_time + '] [ERROR] ' + msg
+    else:
+        print '[' + current_time + '] [\033[1;31mERROR\033[0m] ' + msg
 
 
-def info(msg):
+def info(msg, display=False):
     current_time = time.strftime('%Y-%m-%d %X', time.localtime(time.time() + time.timezone + 28800))
     content = '----------------------------\n'
     content += 'Time: ' + current_time + '\n'
     content += 'Action: ' + str(msg) + '\n'
     content += '----------------------------\n\n'
-    log(config.info_log, content)
+    log(ranran.info_log, content)
+    if not display:
+        return
+    current_time = time.strftime('%X', time.localtime(time.time() + time.timezone + 28800))
+    if 'Windows' in platform.system():
+        print '[' + current_time + '] [INFO] ' + msg
+    else:
+        print '[' + current_time + '] [\033[1;31mINFO\033[0m] ' + msg
 

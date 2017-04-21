@@ -13,3 +13,6 @@ version = 'V1.0'
 # Example: /var/log/error.log
 error_log = 'error.log'
 info_log = 'ran.log'
+
+# Script name prefix
+prefix = 'ranran_'
