@@ -85,7 +85,7 @@ def output():
     print desc + '\r\n'
     chars = '##############################################'
     print chars
-    print info2comment('RanRan Framework ' + ranran.version, len(chars))
+    print info2comment('RanRan Framework V' + ranran.version, len(chars))
     print info2comment('A simple tools for hack', len(chars))
     print info2comment('email shy[at]ranshy.com', len(chars))
     print info2comment('blog http://love.ranshy.com', len(chars))

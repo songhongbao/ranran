@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # RanRan Framework Version
-version = 'V1.0'
+version = '1.0'
 
 # RanRan framework uses a socket for communication
 # Default: Socket port 7729

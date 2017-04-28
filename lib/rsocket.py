@@ -28,7 +28,7 @@ class RSocket:
             print 'time out'
             return None
         except Exception, e:
-            log.error(e)
+            log.error(e, display=False, save=True)
             return False
         finally:
             return result
@@ -42,7 +42,7 @@ class RSocket:
             self._socket.send(msg)
             return True
         except Exception, e:
-            log.error(e)
+            log.error(e, display=False, save=True)
             return False
 
     def close(self):

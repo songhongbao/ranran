@@ -14,7 +14,7 @@ def log(file_path, content):
     return
 
 
-def error(msg, display=False):
+def error(msg, display=True, save=False):
     current_time = time.strftime('%Y-%m-%d %X', time.localtime(time.time() + time.timezone + 28800))
     trace_stack = traceback.format_stack()
     content = '----------------------------\n'
@@ -22,7 +22,8 @@ def error(msg, display=False):
     content += 'ERROR: ' + str(msg) + '\n'
     content += 'Position: ' + trace_stack[-2]
     content += '----------------------------\n\n'
-    log(ranran.error_log, content)
+    if save:
+        log(ranran.error_log, content)
     if not display:
         return
     current_time = time.strftime('%X', time.localtime(time.time() + time.timezone + 28800))
@@ -32,13 +33,14 @@ def error(msg, display=False):
         print '[' + current_time + '] [\033[1;31mERROR\033[0m] ' + msg
 
 
-def info(msg, display=False):
+def info(msg, display=True, save=False):
     current_time = time.strftime('%Y-%m-%d %X', time.localtime(time.time() + time.timezone + 28800))
     content = '----------------------------\n'
     content += 'Time: ' + current_time + '\n'
     content += 'Action: ' + str(msg) + '\n'
     content += '----------------------------\n\n'
-    log(ranran.info_log, content)
+    if save:
+        log(ranran.info_log, content)
     if not display:
         return
     current_time = time.strftime('%X', time.localtime(time.time() + time.timezone + 28800))
