@@ -9,11 +9,6 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 
-def command():
-    user_command = raw_input('ranran: ')
-    print user_command
-
-
 def main():
     if len(sys.argv) == 2 and sys.argv[1].startswith(ranran.prefix):
         log.info('Starting RanRan Script + ', save=True)
@@ -41,7 +36,4 @@ while True:
         continue
     print data
 fs.close()
-
-
-
 

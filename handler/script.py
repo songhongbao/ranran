@@ -9,3 +9,4 @@ def get_list():
         if script[-3:] == '.py':
             names.append(script[0:-3])
     return names
+

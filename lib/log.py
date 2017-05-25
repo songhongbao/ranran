@@ -2,8 +2,8 @@
 import os
 import traceback
 import time
-import platform
 from config import ranran
+from color import color2ascii
 
 
 def log(file_path, content):
@@ -27,10 +27,7 @@ def error(msg, display=True, save=False):
     if not display:
         return
     current_time = time.strftime('%X', time.localtime(time.time() + time.timezone + 28800))
-    if 'Windows' in platform.system():
-        print '[' + current_time + '] [ERROR] ' + msg
-    else:
-        print '[' + current_time + '] [\033[1;31mERROR\033[0m] ' + msg
+    print '[' + current_time + '] [' + color2ascii('red') + 'ERROR' + color2ascii() + '] ' + msg
 
 
 def info(msg, display=True, save=False):
@@ -44,8 +41,5 @@ def info(msg, display=True, save=False):
     if not display:
         return
     current_time = time.strftime('%X', time.localtime(time.time() + time.timezone + 28800))
-    if 'Windows' in platform.system():
-        print '[' + current_time + '] [INFO] ' + msg
-    else:
-        print '[' + current_time + '] [\033[1;31mINFO\033[0m] ' + msg
+    print '[' + current_time + '] [' + color2ascii('red') + 'INFO' + color2ascii() + '] ' + msg
 

@@ -1,29 +1,9 @@
 # -*- coding:utf-8 -*-
 import random
-import platform
 import os
 import re
 from config import ranran
-
-
-def color2ascii(color=None):
-    # color end
-    if not color:
-        return '\033[0m'
-    # different color ascii
-    color_map = {
-        'black': '\033[1;30m',
-        'yellow': '\033[1;33m',
-        'red': '\033[1;31m',
-        'blue': '\033[1;34m',
-        'green': '\033[1;32m',
-        'purple': '\033[1;35m',
-        'white': '\033[1;37m',
-        'white_red': '\033[1;37;41m',
-        'black_white': '\033[1;30;47m',
-        'white_blue': '\033[1;37;44m',
-    }
-    return color_map[color]
+from color import color2ascii
 
 
 def info2comment(info, length):
@@ -37,8 +17,6 @@ def get_ascii(ascii_name, color):
     ascii_art_path = os.path.dirname(os.path.realpath(__file__)) + '/../data/AsciiArt/'
     with open(ascii_art_path + ascii_name, 'r') as content_file:
         content = content_file.read()
-    if 'Windows' in platform.system():
-        return content
     # different ascii art use different color style
     if ascii_name == 'giraffe':
         content = re.sub(r'(\\)([^\\\n]+)(\\#)', r'\1' + color2ascii('red') + r'\2' + color2ascii() + r'\3', content)
