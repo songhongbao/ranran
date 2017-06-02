@@ -6,19 +6,23 @@ from inspect import getargspec
 from lib.color import color2ascii
 
 
+def stop():
+    print 'See you!'
+    # todo
+    exit(0)
+
+
 def start():
     # ascii.output()
     log.info('Starting RanRan Framework', save=True)
     while True:
         try:
-            name = color2ascii('yellow_') + command.role['name'] + color2ascii()
+            name = color2ascii('yellow_') + command.name + color2ascii()
             user_command = raw_input(name + '$ ')
             if not user_command:
                 continue
-            elif user_command == 'exit':
-                print 'See you!'
-                # todo
-                exit(0)
+            elif user_command == 'exit' or user_command == 'quit':
+                stop()
             # command init
             args = [x for x in user_command.split(' ') if x]
             if '_' + args[0] in dir(command):
@@ -30,7 +34,7 @@ def start():
                     continue
                 func(*param)
             else:
-                log.error('command ' + args[0] + ' is invalid')
+                log.error('command ' + args[0] + ' is invalid. Please input help to get info.')
         except KeyboardInterrupt:
-            print '\r\nPlease input exit to exit.'
+            print '\r\nPlease input exit/quit to exit.'
             continue
