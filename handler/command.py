@@ -77,8 +77,9 @@ def _use(script_name):
     use script, switch from one directory to another
     use ping
     """
-    if script_name not in script.get_list() or script_name != 'ranran':
+    if script_name not in script.get_list() and script_name != 'ranran':
         log.error('script ' + script_name + ' is not found, type list to get more info.')
+        return
     global name
     name = script_name
 

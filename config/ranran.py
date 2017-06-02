@@ -16,3 +16,9 @@ info_log = 'ran.log'
 
 # Script name prefix
 prefix = 'ranran_'
+
+# DNS ip list
+dns_ips = [
+    '223.5.5.5',
+    '223.6.6.6'
+]
